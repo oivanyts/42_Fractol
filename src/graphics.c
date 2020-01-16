@@ -12,12 +12,32 @@
 
 #include "graphics.h"
 
-bool	init(t_graphics *not_initialized)
+bool	init_graphics(t_graphics *new, char *win_name, int width, int height)
 {
-	return (not_initialized->mlx = mlx_init());
+	if (!(new->mlx = mlx_init()))
+	{
+		return (false);
+	}
+	new->height_window = height;
+	new->width_window = width;
+	if (!(new->win = mlx_new_window(new->mlx, width, height, win_name)))
+	{
+		return (false);
+	}
+
+	init_picture(new);
+	return (true);
 }
 
-bool	initWindow(t_graphics *not_initialized)
+bool	destroy_graphic(t_graphics *old)
 {
-	return (not_initialized->win = mlx_new_window(not_initialized->mlx, WIDTH, HEIGHT, "Fractol"));
+	if (!old || !destroy_picture(old))
+	{
+		return (false);
+	}
+	if (old->win)
+	{
+		return (mlx_destroy_window(old->mlx, old->win));
+	}
+	return (false);
 }

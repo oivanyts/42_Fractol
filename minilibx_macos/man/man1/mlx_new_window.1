@@ -8,7 +8,7 @@ MiniLibX - Managing windows
 .fi
 .B mlx_new_window
 (
-.I void *mlx_ptr, int size_x, int size_y, char *title
+.I void *mlx_ptr, int size_x, int size_img_y, char *title
 );
 
 .nf
@@ -34,7 +34,7 @@ The
 () function creates a new window on the screen, using the
 .I size_x
 and
-.I size_y
+.I size_img_y
 parameters to determine its size, and
 .I title
 as the text that should be displayed in the window's title bar.
@@ -55,7 +55,7 @@ can handle an arbitrary number of separate windows.
 .B mlx_clear_window
 () and
 .B mlx_destroy_window
-() respectively clear (in black) and destroy the given window. They both have
+() respectively clear (in black) and destroy_picture the given window. They both have
 the same parameters:
 .I mlx_ptr
 is the screen connection identifier, and

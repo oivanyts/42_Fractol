@@ -9,7 +9,7 @@ add_subdirectory(./libft)
 
 AUX_SOURCE_DIRECTORY(./src SOURCE_FILES)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} inc/main.h src/handle_opt.c src/graphics.c inc/graphics.h src/picture.c inc/picture.h)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} inc/main.h src/handle_opt.c src/graphics.c inc/graphics.h src/picture.c src/control.c inc/control.h src/option_handler.c inc/option_handler.h src/fractol.c inc/fractol.h src/complex.c inc/complex.h)
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC
