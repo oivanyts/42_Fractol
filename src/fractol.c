@@ -20,7 +20,7 @@ void	init_model(t_model *new, t_picture *pic, int width, int height)
 						* width * height};
 	new->factor.re = (new->max.re - new->min.re) / width - 1;
 	new->factor.re = (new->max.im - new->min.im) / height - 1;
-	new->max_iter = 1;
+	new->max_iter = 25;
 	new->pic = pic;
 
 }
