@@ -12,20 +12,26 @@
 
 #include "graphics.h"
 
-bool	init_graphics(t_graphics *new, char *win_name, int width, int height)
+bool	init_graphics(t_graphics **new, int count, int width, int height)
 {
-	if (!(new->mlx = mlx_init()))
+	int i;
+
+	i = 0;
+	while (i <= count)
 	{
-		return (false);
-	}
-	new->height_window = height;
-	new->width_window = width;
-	if (!(new->win = mlx_new_window(new->mlx, width, height, win_name)))
-	{
-		return (false);
+		if (!(new[i]->mlx = mlx_init()))
+		{
+			return (false);
+		}
+		if (!(new[i]->win = mlx_new_window(new[i]->mlx, width, height,)))
+		{
+			return (false);
+		}
+		init_picture(new[i]);
+
 	}
 
-	init_picture(new);
+
 	return (true);
 }
 

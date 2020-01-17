@@ -22,13 +22,13 @@ X-Window is a network-oriented graphical system for Unix.
 It is based on two main parts:
 .br
 On one side, your software wants to draw something on the screen and/or
-get keyboard & mouse entries.
+get e_keyboard & e_mouse entries.
 .br
-On the other side, the X-Server manages the screen, keyboard and mouse
+On the other side, the X-Server manages the screen, e_keyboard and e_mouse
 (It is often refered to as a "display").
 .br
 A network connection must be established between these two entities to send
-drawing orders (from the software to the X-Server), and keyboard/mouse
+drawing orders (from the software to the X-Server), and e_keyboard/e_mouse
 events (from the X-Server to the software).
 
 .SH MACOSX CONCEPT
@@ -36,10 +36,10 @@ events (from the X-Server to the software).
 The MacOSX operating system handle graphical access to the screen (or "display").
 .br
 On one side, your software wants to draw something on the screen and/or
-get keyboard & mouse entries.
+get e_keyboard & e_mouse entries.
 .br
 On the other side, the underlying MacOSX graphical framework that handles
-the screen, the windowing system, keyboard and mouse.
+the screen, the windowing system, e_keyboard and e_mouse.
 .br
 A connection between these two entities must be established.
 
@@ -77,7 +77,7 @@ All other MiniLibX functions are described in the following man pages:
 : manipulate images
 .TP 20
 .B mlx_loop
-: handle keyboard or mouse events
+: handle e_keyboard or e_mouse events
 
 .SH LINKING MiniLibX on BSD/Linux and X-Window
 To use MiniLibX functions, you'll need to link
