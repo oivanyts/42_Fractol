@@ -20,21 +20,23 @@
 
 typedef struct	s_model
 {
+	bool		alive;
+	bool		updated;
+	int			max_iter;
+	void		(*fractal)(t_complex *c, t_complex *k, int max_iter, int *it);
 	t_complex	min;
 	t_complex	max;
 	t_complex	factor;
-	int			max_iter;
-	bool		updated;
+	t_complex	k;
 	t_picture	*pic;
-	void		(*fractal)(double re, double im, int max_iter, int *it);
 }				t_model;
 
-void			init_model(t_model (*new)[], t_graphics (*pic)[], int size);
+void			init_model(t_model (*new)[], t_window (*pic)[], int size);
 void			update_model(t_model *model);
 void			*tread_update(void *model);
 void			set_position(t_model *model, int iterator, int x, int y);
-void			mandelbrot(double re, double im, int max_iter, int *it);
-void			julia(double re, double im, int max_iter, int *it);
-void			third(double re, double im, int max_iter, int *it);
+void 			mandelbrot(t_complex *c, t_complex *, int max_iter, int *it);
+void			julia(t_complex *c, t_complex *k, int max_iter, int *it);
+void			third(t_complex *c, t_complex *k, int max_iter, int *it);
 
 #endif

@@ -18,7 +18,7 @@ const char *a[] = {
 		"Third"
 };
 
-void		(*fractal[3])(double re, double im, int max_iter, int *it) = {
+void		(*fractal[3])(t_complex *c, t_complex *k, int max_iter, int *it) = {
 		&mandelbrot,
 		&julia,
 		&third

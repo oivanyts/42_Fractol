@@ -14,8 +14,9 @@
 
 int		key_hook(int keycode, void *param)
 {
-	t_model *model;
+	t_model		*model;
 
+	printf("Key\n");
 	model = (t_model *)param;
 	model->updated = true;
 	if (keycode == PLUS)
@@ -26,6 +27,10 @@ int		key_hook(int keycode, void *param)
 	{
 		model->max_iter--;
 	}
+	else if (keycode == ESC)
+	{
+
+	}
 	return (0);
 }
 
@@ -35,6 +40,7 @@ int		mouse_hook(int button, int x, int y, void *param)
 	t_complex	mouse;
 	double		scale;
 
+	printf("mouse [%d:%d]\n", x, y);
 	model = (t_model *)param;
 	model->updated = true;
 	if (button == SCR_UP || button == SCR_DOWN)
@@ -51,44 +57,63 @@ int		mouse_hook(int button, int x, int y, void *param)
 	}
 	return (0);
 }
+static int g_curr = 0;
+int exit_on_x(void *last)
+{
+	t_general *here;
+	int i;
+
+	i = 0;
+	here = last;
+	while (i < here->size)
+		destroy_graphic(&(*here->view)[i++]);
+	system("leaks -q Fractol");
+	exit(EXIT_SUCCESS);
+}
 
 int		loop_hook(void *param)
 {
-	t_graphics	*view;
+	t_general	*gen;
+	t_window	*view;
 	t_model		*model;
 	clock_t		start;
 
-	view = ((struct s_general *)param)->view;
-	model = ((struct s_general *)param)->model;
+	gen = (t_general *)param;
+	view = &(*gen->view)[g_curr];
+	model = &(*gen->model)[g_curr];
+	ft_printf("%d loop\n", g_curr);
 	if (model->updated)
 	{
 		start = clock();
 		handle_threads(model);
+//		update_model(model);
 		clear_picture(view);
 		draw_picture(view, 0, 0);
-		draw_clocks(view, (clock() - start) / 1000);
+		model->updated = false;
 	}
-	model->updated = false;
+	if (!model->alive)
+	{
+		exit_on_x(param);
+	}
 	return (1);
 }
 
-void init_controls(t_graphics (*view)[], t_model (*model)[], int size)
+int		expose_hook(void *param)
 {
-	int i;
-	struct s_general tmp;
-
-	i = 0;
-	while (i < size)
-	{
-		tmp = (struct s_general) {&(*view)[i], &(*model)[i]};
-		mlx_key_hook((*view)[i].win, key_hook, &(*model)[i]);
-		mlx_mouse_hook((*view)[i].win, mouse_hook, &(*model)[i]);
-		mlx_loop_hook((*view)[i].mlx, loop_hook, &tmp);
-		i++;
-	}
+	g_curr = ((t_window *)param)->num;
+	return 0;
 }
 
-void run(t_graphics *view)
+void init_controls(t_general *general)
 {
-	mlx_loop(view->mlx);
+	int i = 0;
+	while (i < general->size)
+	{
+		mlx_expose_hook((*general->view)[i].win, expose_hook, &(*general->view)[i]);
+		mlx_key_hook((*general->view)[i].win, key_hook, &((*general->model)[i]));
+		mlx_mouse_hook((*general->view)[i].win, mouse_hook, &(*general->model)[i]);
+		mlx_loop_hook((*general->view)[i].mlx, loop_hook, general);
+		mlx_hook((*general->view)[i].win, 17, 1L << 17, exit_on_x, general);
+		i++;
+	}
 }

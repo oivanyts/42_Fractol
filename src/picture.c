@@ -12,7 +12,7 @@
 
 #include "graphics.h"
 
-bool	init_picture(t_graphics *graphics)
+bool	init_picture(t_window *graphics)
 {
 	t_picture *image;
 
@@ -27,14 +27,14 @@ bool	init_picture(t_graphics *graphics)
 	return (image->pixels);
 }
 
-bool	destroy_picture(t_graphics *graphics)
+bool	destroy_picture(t_window *graphics)
 {
 	if (graphics)
 		return (mlx_destroy_image(graphics->mlx, graphics->frame.img_ptr));
 	return (false);
 }
 
-bool	draw_picture(t_graphics *graphics, int x, int y)
+bool	draw_picture(t_window *graphics, int x, int y)
 {
 	if (graphics)
 	{
@@ -44,17 +44,7 @@ bool	draw_picture(t_graphics *graphics, int x, int y)
 	return (false);
 }
 
-bool	draw_clocks(t_graphics *graphics, int time)
-{
-	if (graphics)
-	{
-		return (mlx_string_put(graphics->mlx, graphics->win, 2,2, 0xff,
-				ft_itoa(time)));
-	}
-	return (false);
-}
-
-bool	clear_picture(t_graphics *graphics)
+bool	clear_picture(t_window *graphics)
 {
 	if (graphics)
 	{

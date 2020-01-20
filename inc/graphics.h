@@ -28,21 +28,22 @@ typedef struct	s_pic
 	int			endian;
 }				t_picture;
 
-typedef struct	s_graphics
+typedef struct	s_window
 {
 	void		*mlx;
 	void		*win;
 	t_picture	frame;
 	int			h_window;
 	int			w_window;
-}				t_graphics;
+	int 		num;
+}				t_window;
 
-bool			init_graphics(t_graphics (*new)[], int count, int width, int height);
-bool			destroy_graphic(t_graphics *new);
-bool			init_picture(t_graphics *graphics);
-bool			destroy_picture(t_graphics *graphics);
-bool			draw_picture(t_graphics *graphics, int x, int y);
-bool			draw_clocks(t_graphics *graphics, int time);
-bool			clear_picture(t_graphics *graphics);
+bool			init_graphics(t_window (*new)[], int count, int width, int height);
+
+bool destroy_graphic(t_window *old);
+bool			init_picture(t_window *graphics);
+bool			destroy_picture(t_window *graphics);
+bool			draw_picture(t_window *graphics, int x, int y);
+bool			clear_picture(t_window *graphics);
 
 #endif

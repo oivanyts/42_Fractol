@@ -33,16 +33,17 @@ enum	e_mouse{
 	SCR_RIGHT = 7
 };
 
-struct	s_general
+typedef struct	s_general
 {
-	t_graphics	*view;
-	t_model		*model;
-};
+	t_window	(*view)[];
+	t_model		(*model)[];
+	int			curr;
+	int			size;
+}	t_general;
 
 int		key_hook(int keycode, void *param);
 int		mouse_hook(int button, int x, int y, void *param);
 int		loop_hook(void *param);
-void	run(t_graphics *view);
-void	init_controls(t_graphics (*view)[], t_model (*model)[], int size);
+void 	init_controls(t_general *general);
 
 #endif
