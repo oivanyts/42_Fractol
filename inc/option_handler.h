@@ -14,8 +14,9 @@
 # define FRACTOL_OPTION_HANDLER_H
 
 # include "libft.h"
+# include "fractol.h"
 
 void usage_print();
 
-bool option_handle(int num, char *argv[], int window_count);
+int option_handle(char *option, t_model *curr_fractol);
 #endif

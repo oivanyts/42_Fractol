@@ -18,6 +18,12 @@ const char *a[] = {
 		"Third"
 };
 
+void		(*fractal[3])(double re, double im, int max_iter, int *it) = {
+		&mandelbrot,
+		&julia,
+		&third
+};
+
 /*
 void usage_print()
 {
@@ -26,23 +32,19 @@ void usage_print()
 }
 */
 
-bool option_handle(int num, char *argv[], int window_count)
+int option_handle(char *option, t_model *curr_fractol)
 {
+	static int count;
 	int i;
 
 	i = sizeof(a)/ sizeof(*a);
-	if (num != 1)
-		return (false);
-	window_count = 0;
-	while (window_count < num)
+	while (i--)
 	{
-		while (i--)
+		if (!ft_strcmp(option, a[i]))
 		{
-			if (!ft_strcmp(argv[window_count], a[i]))
-
-				return(true);
+			curr_fractol->fractal = fractal[i];
+			return(++count);
 		}
-		window_count++;
 	}
 	return (false);
 }

@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.14)
 project(Fractol C)
 
 set(CMAKE_C_STANDARD 11)
-#set(CMAKE_C_FLAGS "-Wextra -Werror -Wall")
+set(CMAKE_C_FLAGS "-Wextra -Werror -Wall -v")
 
 link_directories(minilibx_macos)    #лінковка млх
 add_subdirectory(./libft)
 
 AUX_SOURCE_DIRECTORY(./src SOURCE_FILES)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} src/graphics.c inc/graphics.h src/picture.c src/control.c inc/control.h src/option_handler.c inc/option_handler.h src/fractol.c inc/fractol.h src/complex.c inc/complex.h src/tread_handle.c inc/tread_handle.h src/window.c)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} )
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC

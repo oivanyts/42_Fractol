@@ -12,23 +12,25 @@
 
 #include "graphics.h"
 
-bool	init_graphics(t_graphics **new, int count, int width, int height)
+bool	init_graphics(t_graphics (*new)[], int count, int width, int height)
 {
 	int i;
 
 	i = 0;
-	while (i <= count)
+	while (i < count)
 	{
-		if (!(new[i]->mlx = mlx_init()))
+		if (!((*new)[i].mlx = mlx_init()))
 		{
 			return (false);
 		}
-		if (!(new[i]->win = mlx_new_window(new[i]->mlx, width, height,)))
+		if (!((*new)[i].win = mlx_new_window((*new)[i].mlx, width, height, ft_itoa(i))))
 		{
 			return (false);
 		}
-		init_picture(new[i]);
-
+		(*new)[i].w_window = width;
+		(*new)[i].h_window = height;
+		init_picture(&((*new)[i]));
+		i++;
 	}
 
 
@@ -37,6 +39,7 @@ bool	init_graphics(t_graphics **new, int count, int width, int height)
 
 bool	destroy_graphic(t_graphics *old)
 {
+
 	if (!old || !destroy_picture(old))
 	{
 		return (false);

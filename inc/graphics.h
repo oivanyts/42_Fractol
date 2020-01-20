@@ -15,10 +15,8 @@
 
 # include "mlx.h"
 # include "stdbool.h"
+# include "libft.h"
 
-const char		name[] = {
-
-};
 typedef struct	s_pic
 {
 	void		*img_ptr;
@@ -39,7 +37,7 @@ typedef struct	s_graphics
 	int			w_window;
 }				t_graphics;
 
-bool			init_graphics(t_graphics **new, int count, int width, int height);
+bool			init_graphics(t_graphics (*new)[], int count, int width, int height);
 bool			destroy_graphic(t_graphics *new);
 bool			init_picture(t_graphics *graphics);
 bool			destroy_picture(t_graphics *graphics);

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "tread_handle.h"
-#include "fractol.h"
 
 void	*tread_update(void *model)
 {
@@ -34,7 +33,7 @@ void	*tread_update(void *model)
 		while (x < cur->model->pic->wpic)
 		{
 			c.re = cur->model->min.re + x * cur->model->factor.re;
-			mandelbrot(c.re, c.im, cur->model->max_iter, &it);
+			cur->model->fractal(c.re, c.im, cur->model->max_iter, &it);
 			set_position(cur->model, it, x, y);
 			x++;
 		}

@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "control.h"
-#include "stdio.h"
-#include "tread_handle.h"
-#include <time.h>
 
 int		key_hook(int keycode, void *param)
 {
@@ -75,13 +72,23 @@ int		loop_hook(void *param)
 	return (1);
 }
 
-void	run(t_graphics *view, t_model *model)
+void init_controls(t_graphics (*view)[], t_model (*model)[], int size)
 {
+	int i;
 	struct s_general tmp;
 
-	tmp = (struct s_general) {view, model};
-	mlx_key_hook(view->win, key_hook, model);
-	mlx_mouse_hook(view->win, mouse_hook, model);
-	mlx_loop_hook(view->mlx, loop_hook, &tmp);
+	i = 0;
+	while (i < size)
+	{
+		tmp = (struct s_general) {&(*view)[i], &(*model)[i]};
+		mlx_key_hook((*view)[i].win, key_hook, &(*model)[i]);
+		mlx_mouse_hook((*view)[i].win, mouse_hook, &(*model)[i]);
+		mlx_loop_hook((*view)[i].mlx, loop_hook, &tmp);
+		i++;
+	}
+}
+
+void run(t_graphics *view)
+{
 	mlx_loop(view->mlx);
 }

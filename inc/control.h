@@ -13,8 +13,9 @@
 #ifndef FRACTOL_CONTROL_H
 # define FRACTOL_CONTROL_H
 
-# include "graphics.h"
 # include "fractol.h"
+# include "tread_handle.h"
+# include <time.h>
 
 enum	e_keyboard
 {
@@ -41,6 +42,7 @@ struct	s_general
 int		key_hook(int keycode, void *param);
 int		mouse_hook(int button, int x, int y, void *param);
 int		loop_hook(void *param);
-void	run(t_graphics *new, t_model *model);
+void	run(t_graphics *view);
+void	init_controls(t_graphics (*view)[], t_model (*model)[], int size);
 
 #endif

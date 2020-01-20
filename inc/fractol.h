@@ -14,7 +14,7 @@
 # define FRACTOL_FRACTOL_H
 
 # include <stdbool.h>
-# include  <math.h>
+# include <math.h>
 # include "complex.h"
 # include "graphics.h"
 
@@ -26,13 +26,15 @@ typedef struct	s_model
 	int			max_iter;
 	bool		updated;
 	t_picture	*pic;
-	void		(*formula)(double re, double im, int max_iter, int *it);
+	void		(*fractal)(double re, double im, int max_iter, int *it);
 }				t_model;
 
-void			init_model(t_model *new, t_picture *pic, int width, int height);
+void			init_model(t_model (*new)[], t_graphics (*pic)[], int size);
 void			update_model(t_model *model);
 void			*tread_update(void *model);
 void			set_position(t_model *model, int iterator, int x, int y);
 void			mandelbrot(double re, double im, int max_iter, int *it);
+void			julia(double re, double im, int max_iter, int *it);
+void			third(double re, double im, int max_iter, int *it);
 
 #endif

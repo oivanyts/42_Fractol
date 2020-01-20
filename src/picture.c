@@ -12,34 +12,53 @@
 
 #include "graphics.h"
 
-bool init_picture(t_graphics *graphics)
+bool	init_picture(t_graphics *graphics)
 {
 	t_picture *image;
 
 	image = &(graphics->frame);
-	if (!(image->img_memory = mlx_new_image(graphics->mlx, graphics->width_window,
-			graphics->height_window)))
+	if (!(image->img_ptr= mlx_new_image(graphics->mlx, graphics->w_window,
+			graphics->h_window)))
 		return (false);
-	image->separate_pixels = mlx_get_data_addr(image->img_memory, &(image->bits_per_pixel),
+	image->pixels = mlx_get_data_addr(image->img_ptr, &(image->bits_per_pixel),
 			&(image->size_img_y), &(image->endian));
-	image->width = graphics->width_window;
-	image->heidth = graphics->height_window;
-	return (image->separate_pixels);
+	image->wpic = graphics->w_window;
+	image->hpic = graphics->h_window;
+	return (image->pixels);
 }
 
-bool destroy_picture(t_graphics *graphics)
+bool	destroy_picture(t_graphics *graphics)
 {
 	if (graphics)
-		return (mlx_destroy_image(graphics->mlx, graphics->frame.img_memory));
+		return (mlx_destroy_image(graphics->mlx, graphics->frame.img_ptr));
 	return (false);
 }
 
-bool draw_picture(t_graphics *graphics, int x, int y)
+bool	draw_picture(t_graphics *graphics, int x, int y)
 {
 	if (graphics)
 	{
 		return (mlx_put_image_to_window(graphics->mlx, graphics->win,
-				graphics->frame.img_memory, x, y));
+				graphics->frame.img_ptr, x, y));
+	}
+	return (false);
+}
+
+bool	draw_clocks(t_graphics *graphics, int time)
+{
+	if (graphics)
+	{
+		return (mlx_string_put(graphics->mlx, graphics->win, 2,2, 0xff,
+				ft_itoa(time)));
+	}
+	return (false);
+}
+
+bool	clear_picture(t_graphics *graphics)
+{
+	if (graphics)
+	{
+		return (mlx_clear_window(graphics->mlx, graphics->win));
 	}
 	return (false);
 }

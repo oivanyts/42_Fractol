@@ -14,7 +14,8 @@
 # define FRACTOL_TREAD_HANDLE_H
 
 # include <pthread.h>
-# include <fractol.h>
+# include "fractol.h"
+
 # define MAX_THREADS 40
 
 typedef struct		s_threads

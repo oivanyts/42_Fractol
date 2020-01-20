@@ -21,13 +21,17 @@ int	main(int argc, char *argv[])
 {
 	t_graphics	view[--argc];
 	t_model		fractol[argc];
-	int			&window_count;
+	int			window_count = 0;
 
-	if (!option_handle(argc, ++argv, 0))
-		return (EXIT_FAILURE);
-	init_graphics(&view[argc], "Fractol", 800, 800);
-	init_model(&fractol, &view.frame, view.w_window, view.h_window);
-	run(&view, &fractol);
-	destroy_graphic(&view);
+	while (argc--)
+	{
+		window_count = option_handle(*(++argv), &fractol[window_count++]);
+	}
+	ft_printf("windows %d\n", window_count);
+	init_graphics(&view, window_count, 800, 800);
+	init_model(&fractol, &view, window_count);
+	init_controls(&view, &fractol, window_count);
+	run(&view[0]);
+//	destroy_graphic(&view);
 	return (0);
 }
