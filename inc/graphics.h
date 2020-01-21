@@ -36,11 +36,11 @@ typedef struct	s_window
 	void		*win;
 	int			h_window;
 	int			w_window;
-	int 		num;
+	int			num;
 	t_picture	frame;
 }				t_window;
 
-bool			init_graphics(t_window (**new), int count, char **names);
+bool			init_graphics(t_window (new)[], int count, char *names[]);
 bool			destroy_graphic(t_window *old);
 bool			init_picture(t_window *graphics);
 bool			destroy_picture(t_window *graphics);

@@ -12,7 +12,7 @@
 
 #include "graphics.h"
 
-bool	init_graphics(t_window **new, int count, char **names)
+bool	init_graphics(t_window new[], int count, char *names[])
 {
 	int		i;
 	void	*tmp;
@@ -21,19 +21,19 @@ bool	init_graphics(t_window **new, int count, char **names)
 	i = 0;
 	while (i < count)
 	{
-		if (!((*new)[i].mlx = tmp))
+		if (!(new[i].mlx = tmp))
 		{
 			return (false);
 		}
-		if (!((*new)[i].win = mlx_new_window((*new)[i].mlx, WIDTH, HEIGHT,
+		if (!(new[i].win = mlx_new_window(new[i].mlx, WIDTH, HEIGHT,
 				names[count - 1 - i])))
 		{
 			return (false);
 		}
-		(*new)[i].w_window = WIDTH;
-		(*new)[i].h_window = HEIGHT;
-		(*new)[i].num = i;
-		init_picture(&((*new)[i]));
+		new[i].w_window = WIDTH;
+		new[i].h_window = HEIGHT;
+		new[i].num = i;
+		init_picture(&(new[i]));
 		i++;
 	}
 	return (true);

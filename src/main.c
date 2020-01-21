@@ -37,9 +37,9 @@ int		main(int argc, char *argv[])
 	}
 	if (!general.size)
 		return (usage_print());
-	if (!init_graphics(&view, general.size, ++argv))
+	if (!init_graphics(view, general.size, ++argv))
 		return (1);
-	init_model(&models, &view, general.size);
+	init_model(models, view, general.size);
 	init_controls(&general);
 	loop(view[0].mlx);
 	return (0);

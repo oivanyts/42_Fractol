@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	init_model(t_model **new, t_window **pic, int size)
+void	init_model(t_model new[], t_window pic[], int size)
 {
 	int i;
 	int width;
@@ -21,16 +21,16 @@ void	init_model(t_model **new, t_window **pic, int size)
 	i = 0;
 	while (i < size)
 	{
-		(*new)[i].alive = true;
-		(*new)[i].updated = true;
-		width = (*pic)[i].w_window;
-		height = (*pic)[i].h_window;
-		(*new)[i].k = (t_complex){-0.4, 0.6};
-		(*new)[i].min = (t_complex){-2.0, -2.0};
-		(*new)[i].max = (t_complex){2.0, (*new)[i].min.im + (2.0 -
-							(*new)[i].min.re) * width / height};
-		(*new)[i].max_iter = 25;
-		(*new)[i].pic = &(*pic)[i].frame;
+		new[i].alive = true;
+		new[i].updated = true;
+		width = pic[i].w_window;
+		height = pic[i].h_window;
+		new[i].k = (t_complex){-0.4, 0.6};
+		new[i].min = (t_complex){-2.0, -2.0};
+		new[i].max = (t_complex){2.0, new[i].min.im + (2.0 -
+							new[i].min.re) * width / height};
+		new[i].max_iter = 25;
+		new[i].pic = &pic[i].frame;
 		i++;
 	}
 }

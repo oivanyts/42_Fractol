@@ -42,7 +42,7 @@ typedef struct	s_general
 int				key_hook(int keycode, void *param);
 int				mouse_hook(int button, int x, int y, void *param);
 int				loop_hook(void *param);
-void 			init_controls(t_general *general);
+void			init_controls(t_general *general);
 int				expose_hook(void *param);
 int				exit_on_x(void *last);
 #endif
