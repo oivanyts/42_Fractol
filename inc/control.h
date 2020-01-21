@@ -20,7 +20,11 @@ enum	e_keyboard
 {
 	PLUS = 69,
 	MINUS = 78,
-	ESC = 53
+	ESC = 53,
+	ARROW_UP = 126,
+	ARROW_DOWN = 125,
+	ARROW_RIGHT = 124,
+	ARROW_LEFT = 123
 };
 
 enum	e_mouse{

@@ -12,27 +12,6 @@
 
 #include "control.h"
 
-int		key_hook(int keycode, void *param)
-{
-	t_model		*model;
-
-	model = (t_model *)param;
-	model->updated = true;
-	if (keycode == PLUS)
-	{
-		model->max_iter += model->max_iter / 10;
-	}
-	else if (keycode == MINUS && model->max_iter > 1)
-	{
-		model->max_iter -= model->max_iter / 10;
-	}
-	else if (keycode == ESC)
-	{
-		model->alive = false;
-	}
-	return (0);
-}
-
 int		mouse_hook(int button, int x, int y, void *param)
 {
 	t_model		*model;
