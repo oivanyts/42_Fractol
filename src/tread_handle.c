@@ -14,27 +14,25 @@
 
 void	*tread_update(void *model)
 {
-	t_threads	*cur;
+	t_model		*cur;
 	t_complex	c;
 	int			x;
 	int			y;
 	int			it;
 
-	cur = (t_threads *)model;
-	cur->model->factor.re = (cur->model->max.re - cur->model->min.re) /
-			(cur->model->pic->wpic - 1);
-	cur->model->factor.im = (cur->model->max.im - cur->model->min.im) /
-			(cur->model->pic->hpic - 1);
-	y = cur->i;
-	while (y < cur->model->pic->hpic)
+	cur = (t_model *)(((t_threads *)model)->model);
+	cur->factor.re = (cur->max.re - cur->min.re) / (cur->pic->wpic - 1);
+	cur->factor.im = (cur->max.im - cur->min.im) / (cur->pic->hpic - 1);
+	y = ((t_threads *)model)->i;
+	while (y < cur->pic->hpic)
 	{
-		c.im = cur->model->max.im - y * cur->model->factor.im;
+		c.im = cur->max.im - y * cur->factor.im;
 		x = 0;
-		while (x < cur->model->pic->wpic)
+		while (x < cur->pic->wpic)
 		{
-			c.re = cur->model->min.re + x * cur->model->factor.re;
-			cur->model->fractal(&c, &cur->model->k, cur->model->max_iter, &it);
-			set_position(cur->model, it, x, y);
+			c.re = cur->min.re + x * cur->factor.re;
+			cur->fractal(&c, &cur->k, cur->max_iter, &it);
+			set_position(((t_threads *)model)->model, it, x, y);
 			x++;
 		}
 		y += MAX_THREADS;

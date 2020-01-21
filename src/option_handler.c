@@ -12,38 +12,32 @@
 
 #include "option_handler.h"
 
-const char *a[] = {
-		"Mandelbrot",
-		"Julia",
-		"Third"
-};
-
-void		(*fractal[3])(t_complex *c, t_complex *k, int max_iter, int *it) = {
-		&mandelbrot,
-		&julia,
-		&third
-};
-
-/*
-void usage_print()
+int		usage_print(void)
 {
-	ft_printf("Usage: fractol [-aDde] [-f | -g] "
-	"[-n number] [-b b_arg | -c c_arg] req1 req2 [opt1 [opt2]]");
+	ft_printf("Usage: fractol julia mandelbrot ship\n");
+	return (1);
 }
-*/
 
-int option_handle(char *option, t_model *curr_fractol)
+int		option_handle(char *option, t_model *curr_fractol)
 {
-	static int count;
-	int i;
+	static int	count;
+	int			i;
+	char		*names[3];
+	void		(*fractals[3])(t_complex *, t_complex *, int, int *);
 
-	i = sizeof(a)/ sizeof(*a);
+	names[0] = "mandelbrot";
+	names[1] = "julia";
+	names[2] = "ship";
+	fractals[0] = &mandelbrot;
+	fractals[1] = &julia;
+	fractals[2] = &third;
+	i = sizeof(names) / sizeof(*names);
 	while (i--)
 	{
-		if (!ft_strcmp(option, a[i]))
+		if (!ft_strcmp(option, names[i]))
 		{
-			curr_fractol->fractal = fractal[i];
-			return(++count);
+			curr_fractol->fractal = fractals[i];
+			return (++count);
 		}
 	}
 	return (false);

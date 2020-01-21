@@ -63,7 +63,7 @@ MiniLibX - Manipulating images
 .SH DESCRIPTION
 
 .B mlx_new_image
-() creates a new image in memory. It returns a
+() creates g_a new image in memory. It returns g_a
 .I void *
 identifier needed to manipulate this image later. It only needs
 the size of the image to be created, using the
@@ -77,7 +77,7 @@ connection identifier (see the
 manual).
 
 The user can draw inside the image (see below), and
-can dump the image inside a specified window at any time to
+can dump the image inside g_a specified window at any time to
 display it on the screen. This is done using
 .B mlx_put_image_to_window
 (). Three identifiers are needed here, for the connection to the
@@ -94,13 +94,13 @@ and
 ) coordinates define where the image should be placed in the window.
 
 .B mlx_get_data_addr
-() returns information about the created image, allowing a user
+() returns information about the created image, allowing g_a user
 to modify it later. The
 .I img_ptr
 parameter specifies the image to use. The three next parameters should
 be the addresses of three different valid integers.
 .I bits_per_pixel
-will be filled with the number of bits needed to represent a pixel color
+will be filled with the number of bits needed to represent g_a pixel color
 (also called the depth of the image).
 .I size_line
 is the number of bytes used to store one line of the image in memory.
@@ -114,7 +114,7 @@ little endian (
 == 1).
 
 .B mlx_get_data_addr
-returns a
+returns g_a
 .I char *
 address that represents the begining of the memory area where the image
 is stored. From this adress, the first
@@ -135,8 +135,8 @@ destroys the given image (
 
 .SH STORING COLOR INSIDE IMAGES
 
-Depending on the display, the number of bits used to store a pixel color
-can change. The user usually represents a color in RGB mode, using
+Depending on the display, the number of bits used to store g_a pixel color
+can change. The user usually represents g_a color in RGB mode, using
 one byte for each component (see
 .B mlx_pixel_put
 manual). This must be translated to fit the
@@ -144,7 +144,7 @@ manual). This must be translated to fit the
 requirement of the image, and make the color understandable to the graphical system.
 That is the purpose of the
 .B mlx_get_color_value
-() function. It takes a standard RGB
+() function. It takes g_a standard RGB
 .I color
 parameter, and returns an
 .I unsigned int
@@ -164,7 +164,7 @@ The
 .B mlx_xpm_to_image
 () and
 .B mlx_xpm_file_to_image
-() functions will create a new image the same way.
+() functions will create g_a new image the same way.
 They will fill it using the specified
 .I xpm_data
 or
@@ -181,7 +181,7 @@ The three functions that create images,
 .B mlx_xpm_to_image()
 and
 .B mlx_xpm_file_to_image()
-, will return NULL if an error occurs. Otherwise they return a non-null pointer
+, will return NULL if an error occurs. Otherwise they return g_a non-null pointer
 as an image identifier.
 
 

@@ -9,7 +9,7 @@ add_subdirectory(./libft)
 
 AUX_SOURCE_DIRECTORY(./src SOURCE_FILES)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} )
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC

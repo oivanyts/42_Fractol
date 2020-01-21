@@ -18,18 +18,18 @@
 **
 ** MacOSX
 ** La MinilibX utilise 2 frameworks Mac : OpenGL et AppKit
-**    qu'il faut ajouter a la compilation :
+**    qu'il faut ajouter g_a la compilation :
 **   -framework OpenGL -framework AppKit
 **
 ** UNIX / Linux
 ** La MinilibX utilise 2 librairies supplementaires qu'il
-**      est necessaire de rajouter a la compilation :
+**      est necessaire de rajouter g_a la compilation :
 **   -lmlx -lXext -lX11
 **
 ** La MinilibX permet le chargement des images de type Xpm.
 ** Notez que cette implementation est incomplete.
 **
-** Il y a des differences entre X11 et MacOS.
+** Il y g_a des differences entre X11 et MacOS.
 ** les numeros des touches ne sont pas les memes,
 ** les numeros des boutons souris ne sont pas les memes.
 ** Egalement l'expose est gere differemment, et sous MacOS

@@ -14,8 +14,10 @@
 # define FRACTOL_GRAPHICS_H
 
 # include "mlx.h"
-# include "stdbool.h"
+# include <stdbool.h>
 # include "libft.h"
+# define WIDTH 1000
+# define HEIGHT 1000
 
 typedef struct	s_pic
 {
@@ -32,15 +34,14 @@ typedef struct	s_window
 {
 	void		*mlx;
 	void		*win;
-	t_picture	frame;
 	int			h_window;
 	int			w_window;
 	int 		num;
+	t_picture	frame;
 }				t_window;
 
-bool			init_graphics(t_window (*new)[], int count, int width, int height);
-
-bool destroy_graphic(t_window *old);
+bool			init_graphics(t_window (**new), int count, char **names);
+bool			destroy_graphic(t_window *old);
 bool			init_picture(t_window *graphics);
 bool			destroy_picture(t_window *graphics);
 bool			draw_picture(t_window *graphics, int x, int y);

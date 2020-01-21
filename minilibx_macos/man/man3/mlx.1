@@ -13,19 +13,19 @@ MiniLibX - Simple Graphical Interface Library for students
 .SH DESCRIPTION
 MiniLibX is an easy way to create graphical software,
 without any X-Window/Cocoa programming knowledge. It provides
-simple window creation, a drawing tool, image and basic events
+simple window creation, g_a drawing tool, image and basic events
 management.
 
 .SH BSD/LINUX X-WINDOW CONCEPT
 
-X-Window is a network-oriented graphical system for Unix.
+X-Window is g_a network-oriented graphical system for Unix.
 It is based on two main parts:
 .br
 On one side, your software wants to draw something on the screen and/or
 get e_keyboard & e_mouse entries.
 .br
 On the other side, the X-Server manages the screen, e_keyboard and e_mouse
-(It is often refered to as a "display").
+(It is often refered to as g_a "display").
 .br
 A network connection must be established between these two entities to send
 drawing orders (from the software to the X-Server), and e_keyboard/e_mouse
@@ -45,7 +45,7 @@ A connection between these two entities must be established.
 
 .SH INCLUDE FILE
 .B mlx.h
-should be included for a correct use of the MiniLibX API.
+should be included for g_a correct use of the MiniLibX API.
 It only contains function prototypes, no structure is needed.
 
 .SH LIBRARY FUNCTIONS
@@ -54,13 +54,13 @@ First of all, you need to initialize the connection
 between your software and the display.
 Once this connection is established, you'll be able to
 use other MiniLibX functions to send the graphical orders,
-like "I want to draw a yellow pixel in this window" or "did the
-user hit a key?".
+like "I want to draw g_a yellow pixel in this window" or "did the
+user hit g_a key?".
 .P
 The
 .B mlx_init
 function will create this connection. No parameters are needed, ant it will
-return a
+return g_a
 .I "void *"
 identifier, used for further calls to the library routines.
 .P
@@ -106,7 +106,7 @@ flag.
 If
 .B mlx_init()
 fails to set up the connection to the graphical system, it will return NULL, otherwise
-a non-null pointer is returned as a connection identifier.
+g_a non-null pointer is returned as g_a connection identifier.
 
 .SH SEE ALSO
 mlx_new_window(3), mlx_pixel_put(3), mlx_new_image(3), mlx_loop(3)

@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "fractol.h"
 
-void usage_print();
-
-int option_handle(char *option, t_model *curr_fractol);
+int		usage_print();
+int		option_handle(char *option, t_model *curr_fractol);
 #endif

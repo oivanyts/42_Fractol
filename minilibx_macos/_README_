@@ -11,11 +11,11 @@ Interface simplifiee de programmation graphique pour debutant
 
 Cette minilibX est la version native pour MacOSX.
 [ Elle n'utilise plus les librairies graphiques X11, ni XQuartz le serveur X pour MacOSX. ]
-L'interface / l'API, reste identique a la version precedente. Les man presents dans la minilibX
+L'interface / l'API, reste identique g_a la version precedente. Les man presents dans la minilibX
 d'origine sont toujours valides.
 
-Le fichier mlx.h a inclure dans vos programmes rapelle les petites differences de comportement
-entre les 2 versions, dues a la gestion graphique differente selon les systemes d'exploitation.
+Le fichier mlx.h g_a inclure dans vos programmes rapelle les petites differences de comportement
+entre les 2 versions, dues g_a la gestion graphique differente selon les systemes d'exploitation.
 
 #
 

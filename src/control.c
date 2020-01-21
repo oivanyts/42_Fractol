@@ -16,20 +16,19 @@ int		key_hook(int keycode, void *param)
 {
 	t_model		*model;
 
-	printf("Key\n");
 	model = (t_model *)param;
 	model->updated = true;
 	if (keycode == PLUS)
 	{
-		model->max_iter++;
+		model->max_iter += model->max_iter / 10;
 	}
 	else if (keycode == MINUS && model->max_iter > 1)
 	{
-		model->max_iter--;
+		model->max_iter -= model->max_iter / 10;
 	}
 	else if (keycode == ESC)
 	{
-
+		model->alive = false;
 	}
 	return (0);
 }
@@ -40,7 +39,6 @@ int		mouse_hook(int button, int x, int y, void *param)
 	t_complex	mouse;
 	double		scale;
 
-	printf("mouse [%d:%d]\n", x, y);
 	model = (t_model *)param;
 	model->updated = true;
 	if (button == SCR_UP || button == SCR_DOWN)
@@ -57,11 +55,13 @@ int		mouse_hook(int button, int x, int y, void *param)
 	}
 	return (0);
 }
+
 static int g_curr = 0;
-int exit_on_x(void *last)
+
+int		exit_on_x(void *last)
 {
-	t_general *here;
-	int i;
+	t_general	*here;
+	int			i;
 
 	i = 0;
 	here = last;
@@ -76,17 +76,13 @@ int		loop_hook(void *param)
 	t_general	*gen;
 	t_window	*view;
 	t_model		*model;
-	clock_t		start;
 
 	gen = (t_general *)param;
 	view = &(*gen->view)[g_curr];
 	model = &(*gen->model)[g_curr];
-	ft_printf("%d loop\n", g_curr);
 	if (model->updated)
 	{
-		start = clock();
 		handle_threads(model);
-//		update_model(model);
 		clear_picture(view);
 		draw_picture(view, 0, 0);
 		model->updated = false;
@@ -101,19 +97,5 @@ int		loop_hook(void *param)
 int		expose_hook(void *param)
 {
 	g_curr = ((t_window *)param)->num;
-	return 0;
-}
-
-void init_controls(t_general *general)
-{
-	int i = 0;
-	while (i < general->size)
-	{
-		mlx_expose_hook((*general->view)[i].win, expose_hook, &(*general->view)[i]);
-		mlx_key_hook((*general->view)[i].win, key_hook, &((*general->model)[i]));
-		mlx_mouse_hook((*general->view)[i].win, mouse_hook, &(*general->model)[i]);
-		mlx_loop_hook((*general->view)[i].mlx, loop_hook, general);
-		mlx_hook((*general->view)[i].win, 17, 1L << 17, exit_on_x, general);
-		i++;
-	}
+	return (0);
 }

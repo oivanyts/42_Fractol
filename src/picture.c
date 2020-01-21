@@ -17,7 +17,7 @@ bool	init_picture(t_window *graphics)
 	t_picture *image;
 
 	image = &(graphics->frame);
-	if (!(image->img_ptr= mlx_new_image(graphics->mlx, graphics->w_window,
+	if (!(image->img_ptr = mlx_new_image(graphics->mlx, graphics->w_window,
 			graphics->h_window)))
 		return (false);
 	image->pixels = mlx_get_data_addr(image->img_ptr, &(image->bits_per_pixel),

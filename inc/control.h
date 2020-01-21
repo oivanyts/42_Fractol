@@ -15,7 +15,6 @@
 
 # include "fractol.h"
 # include "tread_handle.h"
-# include <time.h>
 
 enum	e_keyboard
 {
@@ -37,13 +36,13 @@ typedef struct	s_general
 {
 	t_window	(*view)[];
 	t_model		(*model)[];
-	int			curr;
 	int			size;
-}	t_general;
+}				t_general;
 
-int		key_hook(int keycode, void *param);
-int		mouse_hook(int button, int x, int y, void *param);
-int		loop_hook(void *param);
-void 	init_controls(t_general *general);
-
+int				key_hook(int keycode, void *param);
+int				mouse_hook(int button, int x, int y, void *param);
+int				loop_hook(void *param);
+void 			init_controls(t_general *general);
+int				expose_hook(void *param);
+int				exit_on_x(void *last);
 #endif

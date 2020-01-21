@@ -17,24 +17,28 @@
 #include "fractol.h"
 #include "option_handler.h"
 
-void loop(void *mlx)
+void	loop(void *mlx)
 {
 	mlx_loop(mlx);
 }
 
-int	main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	t_window	view[--argc];
 	t_model		models[argc];
 	t_general	general;
 
-	general = (t_general){ &view, &models, 0, 0};
-	general.size = 0;
+	general = (t_general){ &view, &models, 0};
 	while (argc--)
 	{
-		general.size = option_handle(*(++argv), &models[general.size++]);
+		if (!(general.size =
+				option_handle(argv[argc + 1], &models[general.size++])))
+			return (usage_print());
 	}
-	init_graphics(&view, general.size, 800, 800);
+	if (!general.size)
+		return (usage_print());
+	if (!init_graphics(&view, general.size, ++argv))
+		return (1);
 	init_model(&models, &view, general.size);
 	init_controls(&general);
 	loop(view[0].mlx);

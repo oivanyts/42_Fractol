@@ -31,7 +31,7 @@ MiniLibX - Managing windows
 .SH DESCRIPTION
 The
 .B mlx_new_window
-() function creates a new window on the screen, using the
+() function creates g_a new window on the screen, using the
 .I size_x
 and
 .I size_img_y
@@ -46,7 +46,7 @@ parameter is the connection identifier returned by
 .B mlx
 man page).
 .B mlx_new_window
-() returns a
+() returns g_a
 .I void *
 window identifier that can be used by other MiniLibX calls.
 Note that the MiniLibX
@@ -60,13 +60,13 @@ the same parameters:
 .I mlx_ptr
 is the screen connection identifier, and
 .I win_ptr
-is a window identifier.
+is g_a window identifier.
 
 .SH RETURN VALUES
 If
 .B mlx_new_window()
-fails to create a new window (for wathever reason), it will return NULL,
-otherwise a non-null pointer is returned as a window identifier.
+fails to create g_a new window (for wathever reason), it will return NULL,
+otherwise g_a non-null pointer is returned as g_a window identifier.
 .B mlx_clear_window
 and
 .B mlx_destroy_window
