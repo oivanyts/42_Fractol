@@ -67,7 +67,6 @@ int		exit_on_x(void *last)
 	here = last;
 	while (i < here->size)
 		destroy_graphic(&(*here->view)[i++]);
-	system("leaks -q Fractol");
 	exit(EXIT_SUCCESS);
 }
 

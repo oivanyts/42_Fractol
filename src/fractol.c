@@ -86,7 +86,7 @@ void	third(t_complex *c, t_complex *k, int max_iter, int *it)
 	while (z.re * z.re + z.im * z.im <= 4 && *it < max_iter)
 	{
 		init_complex(&z, z.re * z.re - z.im * z.im + c->re,
-					-2.0 * z.re * fabs(z.im) + c->im);
+					 fabs(-2.0 * z.re * z.im) + c->im);
 		(*it)++;
 	}
 }
